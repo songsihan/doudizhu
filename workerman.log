@@ -38,3 +38,187 @@
 2015-12-05 01:14:29 Workerman[start.php] Stopping ...
 2015-12-05 01:14:29 Workerman[start.php] has been stopped
 2015-12-05 01:14:30 Workerman[start.php] start in DEBUG mode
+2015-12-07 02:00:28 Workerman[start.php] start in DEBUG mode
+2015-12-07 02:13:04 Workerman[start.php] Stopping ...
+2015-12-07 02:13:04 Workerman[start.php] has been stopped
+2015-12-07 02:13:08 Workerman[start.php] start in DEBUG mode
+2015-12-07 02:13:56 Workerman[start.php] Stopping ...
+2015-12-07 02:13:56 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready
+2015-12-07 02:13:56 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready
+2015-12-07 02:13:56 Workerman[start.php] has been stopped
+2015-12-07 02:13:59 Workerman[start.php] start in DEBUG mode
+2015-12-07 02:15:57 Workerman[start.php] Stopping ...
+2015-12-07 02:15:58 worker[DouDiZhuBusinessWorker:1838] exit with status 9
+2015-12-07 02:15:58 Workerman[start.php] has been stopped
+2015-12-07 02:16:00 Workerman[start.php] start in DEBUG mode
+2015-12-07 02:32:54 Workerman[start.php] Stopping ...
+2015-12-07 02:32:54 Workerman[start.php] has been stopped
+2015-12-07 02:32:55 Workerman[start.php] start in DEBUG mode
+2015-12-08 03:43:35 Workerman[start.php] start in DEBUG mode
+2015-12-08 03:44:48 WORKER EXIT UNEXPECTED E_ERROR Call to undefined function Utils\sortSimpleCard() in /media/sf_phpWorkPlace/doudizhu/Applications/Server/Utils/CardPrompt.php on line 299
+2015-12-08 03:44:48 worker[DouDiZhuBusinessWorker:2852] exit with status 65280
+2015-12-08 03:45:13 WORKER EXIT UNEXPECTED E_ERROR Call to undefined function Utils\sortSimpleCard() in /media/sf_phpWorkPlace/doudizhu/Applications/Server/Utils/CardPrompt.php on line 299
+2015-12-08 03:45:13 worker[DouDiZhuBusinessWorker:2853] exit with status 65280
+2015-12-08 03:56:25 Workerman[start.php] Stopping ...
+2015-12-08 03:56:25 Workerman[start.php] has been stopped
+2015-12-08 03:56:26 Workerman[start.php] start in DEBUG mode
+2015-12-08 03:57:32 WORKER EXIT UNEXPECTED E_ERROR Call to undefined function Utils\sortSimpleCard() in /media/sf_phpWorkPlace/doudizhu/Applications/Server/Utils/CardPrompt.php on line 299
+2015-12-08 03:57:32 worker[DouDiZhuBusinessWorker:3012] exit with status 65280
+2015-12-08 03:57:57 WORKER EXIT UNEXPECTED E_ERROR Call to undefined function Utils\sortSimpleCard() in /media/sf_phpWorkPlace/doudizhu/Applications/Server/Utils/CardPrompt.php on line 299
+2015-12-08 03:57:57 worker[DouDiZhuBusinessWorker:3009] exit with status 65280
+2015-12-08 04:03:10 Workerman[start.php] Stopping ...
+2015-12-08 04:03:10 Workerman[start.php] has been stopped
+2015-12-08 04:03:11 Workerman[start.php] start in DEBUG mode
+2015-12-08 04:03:44 WORKER EXIT UNEXPECTED E_ERROR Unsupported operand types in /media/sf_phpWorkPlace/doudizhu/Applications/Server/Utils/CardUtil.php on line 305
+2015-12-08 04:03:44 worker[DouDiZhuBusinessWorker:3038] exit with status 65280
+2015-12-08 04:06:55 Workerman[start.php] Stopping ...
+2015-12-08 04:06:55 Workerman[start.php] has been stopped
+2015-12-08 04:06:56 Workerman[start.php] start in DEBUG mode
+2015-12-08 04:07:18 WORKER EXIT UNEXPECTED E_ERROR Unsupported operand types in /media/sf_phpWorkPlace/doudizhu/Applications/Server/Utils/CardUtil.php on line 306
+2015-12-08 04:07:18 worker[DouDiZhuBusinessWorker:3055] exit with status 65280
+2015-12-08 04:09:57 Workerman[start.php] Stopping ...
+2015-12-08 04:09:57 Workerman[start.php] has been stopped
+2015-12-08 04:09:57 Workerman[start.php] start in DEBUG mode
+2015-12-08 04:10:33 WORKER EXIT UNEXPECTED E_ERROR Unsupported operand types in /media/sf_phpWorkPlace/doudizhu/Applications/Server/Utils/CardUtil.php on line 308
+2015-12-08 04:10:33 worker[DouDiZhuBusinessWorker:3083] exit with status 65280
+2015-12-08 04:14:25 Workerman[start.php] Stopping ...
+2015-12-08 04:14:25 Workerman[start.php] has been stopped
+2015-12-08 04:14:26 Workerman[start.php] start in DEBUG mode
+2015-12-08 04:15:07 Workerman[start.php] Stopping ...
+2015-12-08 04:15:07 Workerman[start.php] has been stopped
+2015-12-08 04:15:09 Workerman[start.php] start in DEBUG mode
+2015-12-08 04:15:34 WORKER EXIT UNEXPECTED E_ERROR Unsupported operand types in /media/sf_phpWorkPlace/doudizhu/Applications/Server/Utils/CardUtil.php on line 308
+2015-12-08 04:15:34 worker[DouDiZhuBusinessWorker:3113] exit with status 65280
+2015-12-08 04:18:37 Workerman[start.php] Stopping ...
+2015-12-08 04:18:37 Workerman[start.php] has been stopped
+2015-12-08 04:18:37 Workerman[start.php] start in DEBUG mode
+2015-12-08 04:18:54 WORKER EXIT UNEXPECTED E_ERROR Unsupported operand types in /media/sf_phpWorkPlace/doudizhu/Applications/Server/Utils/CardUtil.php on line 308
+2015-12-08 04:18:54 worker[DouDiZhuBusinessWorker:3255] exit with status 65280
+2015-12-08 04:20:21 Workerman[start.php] Stopping ...
+2015-12-08 04:20:21 Workerman[start.php] has been stopped
+2015-12-08 04:20:21 Workerman[start.php] start in DEBUG mode
+2015-12-08 04:20:43 WORKER EXIT UNEXPECTED E_ERROR Unsupported operand types in /media/sf_phpWorkPlace/doudizhu/Applications/Server/Utils/CardUtil.php on line 308
+2015-12-08 04:20:43 worker[DouDiZhuBusinessWorker:3270] exit with status 65280
+2015-12-08 04:21:44 Workerman[start.php] Stopping ...
+2015-12-08 04:21:44 Workerman[start.php] has been stopped
+2015-12-08 04:21:46 Workerman[start.php] start in DEBUG mode
+2015-12-08 04:22:27 WORKER EXIT UNEXPECTED E_ERROR Unsupported operand types in /media/sf_phpWorkPlace/doudizhu/Applications/Server/Utils/CardUtil.php on line 308
+2015-12-08 04:22:27 worker[DouDiZhuBusinessWorker:3285] exit with status 65280
+2015-12-08 04:27:54 WORKER EXIT UNEXPECTED E_ERROR Unsupported operand types in /media/sf_phpWorkPlace/doudizhu/Applications/Server/Utils/CardUtil.php on line 308
+2015-12-08 04:27:54 worker[DouDiZhuBusinessWorker:3283] exit with status 65280
+2015-12-08 04:35:04 Workerman[start.php] Stopping ...
+2015-12-08 04:35:04 Workerman[start.php] has been stopped
+2015-12-08 04:35:07 Workerman[start.php] start in DEBUG mode
+2015-12-08 04:35:27 WORKER EXIT UNEXPECTED E_ERROR Unsupported operand types in /media/sf_phpWorkPlace/doudizhu/Applications/Server/Utils/CardUtil.php on line 308
+2015-12-08 04:35:27 worker[DouDiZhuBusinessWorker:3319] exit with status 65280
+2015-12-08 04:35:52 WORKER EXIT UNEXPECTED E_ERROR Unsupported operand types in /media/sf_phpWorkPlace/doudizhu/Applications/Server/Utils/CardUtil.php on line 308
+2015-12-08 04:35:52 worker[DouDiZhuBusinessWorker:3320] exit with status 65280
+2015-12-08 04:46:52 Workerman[start.php] Stopping ...
+2015-12-08 04:46:52 Workerman[start.php] has been stopped
+2015-12-08 04:46:53 Workerman[start.php] start in DEBUG mode
+2015-12-08 04:47:13 WORKER EXIT UNEXPECTED E_ERROR Unsupported operand types in /media/sf_phpWorkPlace/doudizhu/Applications/Server/Utils/CardUtil.php on line 305
+2015-12-08 04:47:13 worker[DouDiZhuBusinessWorker:3360] exit with status 65280
+2015-12-08 04:48:14 Workerman[start.php] Stopping ...
+2015-12-08 04:48:14 Workerman[start.php] has been stopped
+2015-12-08 04:48:14 Workerman[start.php] start in DEBUG mode
+2015-12-08 04:48:43 Workerman[start.php] Stopping ...
+2015-12-08 04:48:43 Workerman[start.php] has been stopped
+2015-12-08 04:48:45 Workerman[start.php] start in DEBUG mode
+2015-12-08 04:49:06 WORKER EXIT UNEXPECTED E_ERROR Unsupported operand types in /media/sf_phpWorkPlace/doudizhu/Applications/Server/Utils/CardUtil.php on line 305
+2015-12-08 04:49:06 worker[DouDiZhuBusinessWorker:3509] exit with status 65280
+2015-12-08 04:52:50 Workerman[start.php] Stopping ...
+2015-12-08 04:52:50 Workerman[start.php] has been stopped
+2015-12-08 04:52:52 Workerman[start.php] start in DEBUG mode
+2015-12-08 04:53:13 WORKER EXIT UNEXPECTED E_ERROR Unsupported operand types in /media/sf_phpWorkPlace/doudizhu/Applications/Server/Utils/CardUtil.php on line 305
+2015-12-08 04:53:13 worker[DouDiZhuBusinessWorker:3527] exit with status 65280
+2015-12-08 04:53:38 WORKER EXIT UNEXPECTED E_ERROR Unsupported operand types in /media/sf_phpWorkPlace/doudizhu/Applications/Server/Utils/CardUtil.php on line 305
+2015-12-08 04:53:38 worker[DouDiZhuBusinessWorker:3530] exit with status 65280
+2015-12-08 04:56:15 Workerman[start.php] Stopping ...
+2015-12-08 04:56:15 Workerman[start.php] has been stopped
+2015-12-08 04:56:17 Workerman[start.php] start in DEBUG mode
+2015-12-08 04:59:58 Workerman[start.php] Stopping ...
+2015-12-08 04:59:58 Workerman[start.php] has been stopped
+2015-12-08 05:00:12 Workerman[start.php] start in DEBUG mode
+2015-12-08 05:12:18 Workerman[start.php] Stopping ...
+2015-12-08 05:12:18 Workerman[start.php] has been stopped
+2015-12-08 05:12:19 Workerman[start.php] start in DEBUG mode
+2015-12-08 05:15:39 Workerman[start.php] Stopping ...
+2015-12-08 05:15:39 Workerman[start.php] has been stopped
+2015-12-08 05:15:40 Workerman[start.php] start in DEBUG mode
+2015-12-08 05:24:58 Workerman[start.php] Stopping ...
+2015-12-08 05:24:59 Workerman[start.php] has been stopped
+2015-12-08 05:24:59 Workerman[start.php] start in DEBUG mode
+2015-12-08 05:39:30 Workerman[start.php] Stopping ...
+2015-12-08 05:39:30 Workerman[start.php] has been stopped
+2015-12-08 05:39:30 Workerman[start.php] start in DEBUG mode
+2015-12-08 05:43:42 Workerman[start.php] Stopping ...
+2015-12-08 05:43:42 Workerman[start.php] has been stopped
+2015-12-08 05:43:43 Workerman[start.php] start in DEBUG mode
+2015-12-08 05:54:24 Workerman[start.php] Stopping ...
+2015-12-08 05:54:24 Workerman[start.php] has been stopped
+2015-12-08 05:54:24 Workerman[start.php] start in DEBUG mode
+2015-12-08 06:03:39 Workerman[start.php] Stopping ...
+2015-12-08 06:03:39 Workerman[start.php] has been stopped
+2015-12-08 06:03:40 Workerman[start.php] start in DEBUG mode
+2015-12-08 06:07:09 Workerman[start.php] Stopping ...
+2015-12-08 06:07:10 worker[DouDiZhuBusinessWorker:4028] exit with status 9
+2015-12-08 06:07:10 Workerman[start.php] has been stopped
+2015-12-08 06:07:11 Workerman[start.php] start in DEBUG mode
+2015-12-08 06:27:36 Workerman[start.php] Stopping ...
+2015-12-08 06:27:36 Workerman[start.php] has been stopped
+2015-12-08 06:27:36 Workerman[start.php] start in DEBUG mode
+2015-12-08 06:32:37 Workerman[start.php] Stopping ...
+2015-12-08 06:32:37 Workerman[start.php] has been stopped
+2015-12-08 06:32:38 Workerman[start.php] start in DEBUG mode
+2015-12-08 06:35:55 Workerman[start.php] Stopping ...
+2015-12-08 06:35:56 worker[DouDiZhuBusinessWorker:4251] exit with status 9
+2015-12-08 06:35:56 Workerman[start.php] has been stopped
+2015-12-08 06:37:12 Workerman[start.php] start in DEBUG mode
+2015-12-08 06:37:40 Workerman[start.php] Stopping ...
+2015-12-08 06:37:41 worker[DouDiZhuBusinessWorker:4269] exit with status 9
+2015-12-08 06:37:41 Workerman[start.php] has been stopped
+2015-12-08 06:47:48 Workerman[start.php] start in DEBUG mode
+2015-12-08 06:49:02 Workerman[start.php] Stopping ...
+2015-12-08 06:49:03 worker[DouDiZhuBusinessWorker:4309] exit with status 9
+2015-12-08 06:49:03 Workerman[start.php] has been stopped
+2015-12-08 06:54:05 Workerman[start.php] start in DEBUG mode
+2015-12-08 06:55:00 Workerman[start.php] Stopping ...
+2015-12-08 06:55:01 worker[DouDiZhuBusinessWorker:4457] exit with status 9
+2015-12-08 06:55:01 Workerman[start.php] has been stopped
+2015-12-08 06:56:38 Workerman[start.php] start in DEBUG mode
+2015-12-08 06:58:24 Workerman[start.php] Stopping ...
+2015-12-08 06:58:25 worker[DouDiZhuBusinessWorker:4468] exit with status 9
+2015-12-08 06:58:25 Workerman[start.php] has been stopped
+2015-12-08 06:58:25 Workerman[start.php] start in DEBUG mode
+2015-12-08 06:58:28 Workerman[start.php] Stopping ...
+2015-12-08 06:58:28 Workerman[start.php] has been stopped
+2015-12-08 06:58:29 Workerman[start.php] start in DEBUG mode
+2015-12-08 07:05:56 Workerman[start.php] Stopping ...
+2015-12-08 07:05:56 Workerman[start.php] has been stopped
+2015-12-08 07:05:57 Workerman[start.php] start in DEBUG mode
+2015-12-08 07:06:57 Workerman[start.php] Stopping ...
+2015-12-08 07:06:57 Workerman[start.php] has been stopped
+2015-12-08 07:07:33 Workerman[start.php] start in DEBUG mode
+2015-12-08 07:09:13 Workerman[start.php] Stopping ...
+2015-12-08 07:09:13 Workerman[start.php] has been stopped
+2015-12-08 07:21:16 Workerman[start.php] start in DEBUG mode
+2015-12-08 07:32:19 Workerman[start.php] Stopping ...
+2015-12-08 07:32:19 Workerman[start.php] has been stopped
+2015-12-08 07:32:20 Workerman[start.php] start in DEBUG mode
+2015-12-08 07:35:45 Workerman[start.php] Stopping ...
+2015-12-08 07:35:45 Workerman[start.php] has been stopped
+2015-12-08 07:35:46 Workerman[start.php] start in DEBUG mode
+2015-12-08 07:36:44 Workerman[start.php] Stopping ...
+2015-12-08 07:36:44 Workerman[start.php] has been stopped
+2015-12-08 07:36:47 Workerman[start.php] start in DEBUG mode
+2015-12-08 07:44:04 Workerman[start.php] Stopping ...
+2015-12-08 07:44:04 Workerman[start.php] has been stopped
+2015-12-08 07:44:05 Workerman[start.php] start in DEBUG mode
+2015-12-08 07:45:26 Workerman[start.php] Stopping ...
+2015-12-08 07:45:26 Workerman[start.php] has been stopped
+2015-12-08 07:45:28 Workerman[start.php] start in DEBUG mode
+2015-12-08 07:45:59 Workerman[start.php] Stopping ...
+2015-12-08 07:45:59 Workerman[start.php] has been stopped
+2015-12-08 07:49:42 Workerman[start.php] start in DEBUG mode
+2015-12-08 07:50:47 Workerman[start.php] Stopping ...
+2015-12-08 07:50:47 Workerman[start.php] has been stopped

@@ -297,6 +297,7 @@ class CardUtil{
     {
         $cardNums = array();//卡牌值对应数量
         $cardValues = array();//卡牌对应的值
+        $valNos = array();//卡牌值对应的卡牌
         $maxLen = 0;
         $sameVal = 0;
         foreach($currCardNos as $index=>$no)
@@ -310,6 +311,7 @@ class CardUtil{
             {
                 $cardNums[$v] = 1;
             }
+            $valNos[$v][] = $no;
             $cardValues[$index] = $v;
             if($maxLen < $cardNums[$v])
             {
@@ -321,6 +323,7 @@ class CardUtil{
         $re['values'] = $cardValues;
         $re['maxSameVal'] = $sameVal;
         $re['maxLen'] = $maxLen;
+        $re['valNos'] = $valNos;
         return $re;
     }
 }

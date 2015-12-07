@@ -14,6 +14,7 @@ use Dao\TableDao;
 use GatewayWorker\Lib\Gateway;
 use Plat\EndGame;
 use Plat\LeaveGame;
+use Utils\CardPrompt;
 use Utils\CardUtil;
 use Workerman\Lib\Timer;
 
@@ -69,7 +70,7 @@ class Table{
         $info['lastOpUid'] = $this->lastOpUid;
         $info['lastCardNos'] = $this->lastCardNos;
         $info['playerSt'] = $this->playerStatus;
-        $info['selfCardNos'] = $this->playerCards[$player->uid];
+        $info['selfCardNos'] = array_values($this->playerCards[$player->uid]);
         $info['threeCards'] = $this->threeCards;
         $info['uids'] = $this->uids;
         $info['rTime'] = $this->recordTime;
@@ -126,51 +127,7 @@ class Table{
                 $this->initPlayAddCd = 3;
                 return Constants::LANDLORD_ENSURE;//确定地主
             }
-            else
-            {
-                return -3;
-//                $inGames = array();
-//                foreach($this->uids as $uid)
-//                {
-//                    if(GameDao::isInGame($uid))
-//                    {
-//                        $inGames[] = $uid;
-//                    }
-//                }
-//                if(count($inGames) != 3 || $this->resetTableCnt >= 3)
-//                {
-//                    $re = array();
-//                    $re['type'] = 'll';
-//                    $re['s'] = Constants::RESPONSE_RE_JOIN;
-//                    foreach($inGames as $uid)
-//                    {
-//                        if($uid != $ownerUid)
-//                        {
-//                            GameDao::rmInGamePlayer($uid);
-//                            Gateway::sendToUid($uid,json_encode($re));
-//                        }
-//                    }
-//                    return Constants::LANDLORD_RE_JOIN;//重新匹配
-//                }
-//                else
-//                {
-//                    $this->resetTableInfo();
-//                    $re = array();
-//                    $re['type'] = 'll';
-//                    $re['s'] = Constants::RESPONSE_RE_TABLE;
-//                    foreach($this->uids as $uid)
-//                    {
-//                        $player = PlayerDao::getPlayer($uid);
-//                        $re['tableInfo'] = $this->getTableInfo($player);
-//                        if($uid != $ownerUid)
-//                        {
-//                            Gateway::sendToUid($uid,json_encode($re));
-//                        }
-//                    }
-//                    $info['st'] = Constants::LANDLORD_RESET_TABLE;
-//                    return $info;//重置牌局
-//                }
-            }
+            return -3;
         }
         else
         {
@@ -191,11 +148,11 @@ class Table{
     {
         $currOpUid = $this->currOpUid;
         $this->lastOpUid = $currOpUid;
-        //无上次出牌者，则自动出牌
-        if(count($this->lastCardNos) == 0 || count($playCardNos) > 0)
+        //托管，则自动出牌
+        $currUidCards = $this->playerCards[$currOpUid];
+        if(count($playCardNos) == 0)
         {
-            $currUidCards = $this->playerCards[$currOpUid];
-            if(count($playCardNos) == 0)
+            if(count($this->lastCardNos) == 0)
             {
                 if(CardUtil::checkCards($currUidCards))//是否是一手牌
                 {
@@ -204,66 +161,72 @@ class Table{
                 else
                 {
                     end($currUidCards);//取最小牌
-                    $playCardNos = array(current($currUidCards));
-                }
-            }
-            $playCardData = CardUtil::checkPlayCards($this,$playCardNos);
-//            echo "playCardData======================";
-//            var_dump($playCardData);echo "\n";
-//            echo "currUidCards======================";
-//            var_dump($currUidCards);echo "\n";
-            if($playCardData && self::isExistCards($currUidCards,$playCardNos))
-            {
-//                echo "currUidCards======================";
-//                var_dump($currUidCards);echo "\n";
-                //出牌成功，发送出牌信息－出牌玩家、所出的牌（无牌则为不出）
-                //---客户端重置对手的手牌数量或重置自己的牌
-                //是否炸弹、牌局倍数
-                $re['isBomb'] = 0;
-                $re['isSpring'] = 0;
-                if($playCardData['type'] == Constants::CARD_TYPE_BOMB || $playCardData['type'] == Constants::CARD_TYPE_KING)
-                {
-                    $re['isBomb'] = 1;
-                    $this->multiple *= 2;
-                }
-                $currUidCards = array_diff($currUidCards,$playCardNos);
-                $this->playerCards[$currOpUid] = $currUidCards;
-                $this->lastCardNos = $playCardNos;
-                $this->lastPlayCardUid = $currOpUid;
-                $this->currOpUid = $this->getNextOpUid($currOpUid);
-
-
-                $this->currUnPlayCnt = 0;
-                if(count($currUidCards) == 0)
-                {
-                    $this->tableStatus = Constants::TABLE_END;
-                    $this->currOpUid = $this->lastPlayCardUid;
-                    if($currOpUid == $this->landlordUid)
+                    $no = current($currUidCards);
+                    $val = (int)($no/10);
+                    foreach($currUidCards as $cardNo)
                     {
-                        $isSpring = true;
-                        foreach($this->playerCards as $_uid=>$cards)
+                        if($val == (int)($cardNo/10))
                         {
-                            if($_uid != $currOpUid && count($cards) < 17)
-                            {
-                                $isSpring = false;
-                            }
-                        }
-                        if($isSpring)
-                        {
-                            $re['isSpring'] = 1;
-                            $this->multiple *= 2;
+                            $playCardNos[] = $cardNo;
                         }
                     }
-                    //没有手牌 获胜 结算，牌局销毁－进入匹配状态
-                    //是否春天
                 }
-                $re['playCardType'] = $playCardData;//玩家所出牌的类型
             }
-            else
+            elseif($op == 0)
             {
-                //出牌失败，所出的牌为空，设定为不出牌
-                $playCardNos = array();
+                $promptArrs = CardPrompt::getPromptCards($this->lastCardNos,$currUidCards);
+                $promptArrs && $promptArrs[0] && $playCardNos = $promptArrs[0];
             }
+        }
+        $playCardData = CardUtil::checkPlayCards($this,$playCardNos);
+        if($playCardData && self::isExistCards($currUidCards,$playCardNos))
+        {
+            //出牌成功，发送出牌信息－出牌玩家、所出的牌（无牌则为不出）
+            //---客户端重置对手的手牌数量或重置自己的牌
+            //是否炸弹、牌局倍数
+            $re['isBomb'] = 0;
+            $re['isSpring'] = 0;
+            if($playCardData['type'] == Constants::CARD_TYPE_BOMB || $playCardData['type'] == Constants::CARD_TYPE_KING)
+            {
+                $re['isBomb'] = 1;
+                $this->multiple *= 2;
+            }
+            $currUidCards = array_diff($currUidCards,$playCardNos);
+            $this->playerCards[$currOpUid] = $currUidCards;
+            $this->lastCardNos = $playCardNos;
+            $this->lastPlayCardUid = $currOpUid;
+            $this->currOpUid = $this->getNextOpUid($currOpUid);
+
+
+            $this->currUnPlayCnt = 0;
+            if(count($currUidCards) == 0)
+            {
+                $this->tableStatus = Constants::TABLE_END;
+                $this->currOpUid = $this->lastPlayCardUid;
+                if($currOpUid == $this->landlordUid)
+                {
+                    $isSpring = true;
+                    foreach($this->playerCards as $_uid=>$cards)
+                    {
+                        if($_uid != $currOpUid && count($cards) < 17)
+                        {
+                            $isSpring = false;
+                        }
+                    }
+                    if($isSpring)
+                    {
+                        $re['isSpring'] = 1;
+                        $this->multiple *= 2;
+                    }
+                }
+                //没有手牌 获胜 结算，牌局销毁－进入匹配状态
+                //是否春天
+            }
+            $re['playCardType'] = $playCardData;//玩家所出牌的类型
+        }
+        else
+        {
+            $this->currOpUid = $this->getNextOpUid($currOpUid);
         }
         $depositUid = 'no';
         //判断是否本轮结束，本轮结束，重置上次出牌并设置上次出牌玩家为当前出牌
@@ -272,18 +235,14 @@ class Table{
             $this->lastCardNos = array();
         }
         $this->currUnPlayCnt++;
-        if(count($playCardNos) == 0)
+        if($op == 0)
         {
-            if($op == 0)
+            if($this->playerStatus[$currOpUid] != Constants::PLAYER_LEAVE )
             {
-                if($this->playerStatus[$currOpUid] != Constants::PLAYER_LEAVE )
-                {
-                    $this->playerStatus[$currOpUid] = Constants::PLAYER_DEPOSIT;
-                }
-                //玩家未操作，状态为托管
-                $depositUid = $currOpUid;
+                $this->playerStatus[$currOpUid] = Constants::PLAYER_DEPOSIT;
             }
-            $this->currOpUid = $this->getNextOpUid($currOpUid);
+            //玩家未操作，状态为托管
+            $depositUid = $currOpUid;
         }
         $this->recordTime = time();
         TableDao::addTable($this->tableId,$this);
@@ -368,13 +327,16 @@ class Table{
             {
                 $uids = $table->uids;
                 $table->tableStatus = Constants::TABLE_LANDLORD;
+                $re = array();
+                $re['type'] = 'jt';
+                $re['s'] = Constants::RESPONSE_SUCCESS;
                 foreach($uids as $_uid)
                 {
                     $_player = PlayerDao::getPlayer($_uid);
                     $re['tableInfo'] = $table->getTableInfo($_player);
                     Gateway::sendToUid($_uid,json_encode($re));
                 }
-                $table->recordTime = time();
+                $table->recordTime = time();//叫地主开始时间定为3秒后
                 TableDao::addTable($table->tableId,$table);
             }
         }
