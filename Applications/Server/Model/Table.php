@@ -175,7 +175,7 @@ class Table{
             elseif($op == 0)
             {
                 $promptArrs = CardPrompt::getPromptCards($this->lastCardNos,$currUidCards);
-                $promptArrs && $promptArrs[0] && $playCardNos = $promptArrs[0];
+                $promptArrs && $promptArrs[0] && $playCardNos = rsort($promptArrs[0]);
             }
         }
         $playCardData = CardUtil::checkPlayCards($this,$playCardNos);
