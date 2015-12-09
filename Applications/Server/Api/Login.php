@@ -44,23 +44,20 @@ class Login{
         $table = TableDao::getTable($player->tableId);
         $nowTime = time();
 
-        if($data['isReConn'] == 1)
+        if($table && isset($table->playerStatus[$uid])
+            && ($nowTime - $table->recordTime) <= 60 //记录时间一分钟未更新，牌局失效
+            && $table->tableStatus != Constants::TABLE_INIT
+            && $table->playerStatus[$uid] != Constants::PLAYER_LEAVE)
         {
-            if($table && $table->playerStatus[$uid] != Constants::PLAYER_LEAVE)
+            GameDao::addInGamePlayer($uid);
+            $re['s'] = Constants::RESPONSE_RECONN_SUCCESS;
+            $tableInfo = $table->getTableInfo($player);
+            if($tableInfo)
             {
-                GameDao::addInGamePlayer($uid);
-                $re['s'] = Constants::RESPONSE_RECONN_SUCCESS;
-                $tableInfo = $table->getTableInfo($player);
-                if($tableInfo)
-                {
-                    $re['tableInfo'] = $tableInfo;
-                    Gateway::sendToUid($uid,json_encode($re));
-                    return 1;
-                }
+                $re['tableInfo'] = $tableInfo;
+                Gateway::sendToUid($uid,json_encode($re));
+                return 1;
             }
-            GameDao::rmInGamePlayer($uid);
-            $re['s'] = Constants::RESPONSE_RECONN_FAIL;
-            return 0;
         }
 
         if(!$table || ($nowTime - $table->initTime) >= 30)

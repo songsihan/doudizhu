@@ -72,4 +72,15 @@ class PlayerDao{
         }
         return $no;
     }
+
+    /**
+     * 移除
+     * @param $uid
+     * @return mixed
+     */
+    public static function rmPlayer($uid)
+    {
+        $uid = (int)$uid;
+        return RedisUtil::hDel(self::PLAYER_DATAS,$uid);
+    }
 }

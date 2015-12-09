@@ -12,6 +12,7 @@ class HttpUtil{
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, array('data'=>$data_string));
         curl_setopt($ch, CURLOPT_HEADER, 0);
         ob_start();

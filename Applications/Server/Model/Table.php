@@ -263,7 +263,6 @@ class Table{
         if($this->tableStatus == Constants::TABLE_END)
         {
             $re['winUid'] = $this->lastPlayCardUid;
-            $this->tableOver($this->lastPlayCardUid);
         }
         foreach($uids as $_uid)
         {
@@ -272,6 +271,10 @@ class Table{
             {
                 Gateway::sendToUid($_uid,json_encode($re));
             }
+        }
+        if($this->tableStatus == Constants::TABLE_END)
+        {
+            $this->tableOver($this->lastPlayCardUid);
         }
     }
 
@@ -318,6 +321,7 @@ class Table{
         $nowTime = time();
         if($table->tableStatus == Constants::TABLE_INIT)
         {
+//            echo "checkTime:table init cnt:".count($table->playerStatus)."\n";
             if(($nowTime - $table->recordTime) >= 120 && count($table->playerStatus) < 3)//
             {
                 //牌局结束-人数不足 2.初始化失败
@@ -456,6 +460,14 @@ class Table{
             Timer::del($this->blinkTimeOut);
         }
         $this->blinkTimeOut = 0;
+        foreach($this->uids as $uid)
+        {
+            $player = PlayerDao::getPlayer($uid);
+            if($player->tableId == $this->tableId)
+            {
+                PlayerDao::rmPlayer($uid);
+            }
+        }
         TableDao::rmTable($this->tableId);
     }
 
@@ -536,59 +548,3 @@ class Table{
     public $initPlayAddCd;
 }
 
-//$currOpUid = $table->currOpUid;
-//$currUidCards = $table->playerCards[$currOpUid];
-////无上次出牌者，则自动出牌
-//if(count($table->lastCardNos) == 0)
-//{
-//    if(CardUtil::checkCards($currUidCards))//是否是一手牌
-//    {
-//        $playCardNos = $currUidCards;
-//    }
-//    else
-//    {
-//        end($currUidCards);//取最小牌
-//        $playCardNos = array(current($currUidCards));
-//    }
-//    $re['isBomb'] = 0;
-//    $playCardData = CardUtil::checkPlayCards($this,$playCardNos);
-//    if($playCardData['type'] == Constants::CARD_TYPE_BOMB || $playCardData['type'] == Constants::CARD_TYPE_KING)
-//    {
-//        $re['isBomb'] = 1;
-//        $this->multiple *= 2;
-//    }
-//    $table->lastCardNos = $playCardNos;
-//    $currUidCards = array_diff($currUidCards,$playCardNos);
-//    $table->playerCards[$currOpUid] = $currUidCards;
-//    $table->currUnPlayCnt = 0;
-//    if(count($currUidCards) == 0)
-//    {
-//        $table->tableStatus = Constants::TABLE_END;
-//        //没有手牌 获胜 结算，牌局销毁－进入匹配状态
-//        //是否春天
-//    }
-//    $re['playCardType'] = $playCardData;//玩家所出牌的类型
-//}
-//else
-//{
-//    //出牌失败，所出的牌为空，设定为不出牌
-//    $playCardNos = array();
-//
-//    //未出牌，判断是否本轮结束，本轮结束，重置上次出牌并设置上次出牌玩家为当前出牌
-//    if($table->currUnPlayCnt == 1)
-//    {
-//        $table->currOpUid = $table->lastOpUid;
-//        $table->lastCardNos = array();
-//    }
-//    $table->playerStatus[$currOpUid] = Constants::PLAYER_DEPOSIT;//玩家未操作，状态为托管
-//}
-//
-//TableDao::addTable($this->tableId,$table);
-//
-//$re['s'] = Constants::RESPONSE_SUCCESS;
-//$re['depositUid'] = $currOpUid;//本轮托管玩家
-//$re['playCardNos'] = $playCardNos;
-//$table->recordTime = time();
-//$re['type'] = 'play';
-//$re['playUid'] = $currOpUid;
-//Play::sendInfo($this,$re);

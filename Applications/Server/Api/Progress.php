@@ -24,7 +24,7 @@ class Progress{
     {
         $uid = $player->uid;
         $table = TableDao::getTable($player->tableId);
-        if($table)
+        if($table && $data['addVal'] != -1)//添加值为-1 表示该请求为心跳
         {
             $uids = $table->uids;
             $re['uid'] = $uid;
