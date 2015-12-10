@@ -401,48 +401,22 @@ class Table{
     {
         $award = Constants::BASE_SOCRE * $this->multiple;
         $uids = $this->uids;
-        $dizhuWin = $uid == $this->landlordUid?true:false;//地主赢为true
+        $dizhuWin = ($uid == $this->landlordUid);//地主赢为true
         $userInfos = array();
-        $winusers = array();
         foreach($uids as $_uid)
         {
             $status = ($this->playerStatus[$_uid] == Constants::PLAYER_LEAVE)?1:0;
             $win = 1;
             if($_uid == $this->landlordUid)
             {
-                $award = $award * 2;
-                $_player = PlayerDao::getPlayer($_uid);
-                $_player->score += (($dizhuWin?1:-1)*$award);
-                if(!$dizhuWin)
-                {
-                    $win = 0;
-                    foreach($uids as $__uid)
-                    {
-                        if($__uid != $_uid)
-                        {
-                            $winuser = array();
-                            $winuser['userid'] = $__uid;
-                            $winuser['multiple'] = $this->multiple;
-                            $winusers[] = $winuser;
-                        }
-                    }
-                }
+                $award *= 2;
+                !$dizhuWin && $win = 0;
             }
             else
             {
                 $win = $dizhuWin?0:1;
-                $_player = PlayerDao::getPlayer($_uid);
-                $_player->score += (($dizhuWin?-1:1)*$award);
-                if(!$win)
-                {
-                    $winuser = array();
-                    $winuser['userid'] = $this->landlordUid;
-                    $winuser['multiple'] = $this->multiple;
-                    $winusers[] = $winuser;
-                }
             }
-            PlayerDao::addPlayer($_uid,$_player);
-            $userInfo = EndGame::getUserInfo($_uid,$status,$win,$award,$winusers);
+            $userInfo = EndGame::getUserInfo($_uid,$status,$win,$award);
             $userInfos[] = $userInfo;
         }
         EndGame::sendMsg(200,'normal',$this->tableId,$userInfos);
