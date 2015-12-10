@@ -359,3 +359,69 @@
 2015-12-10 06:23:31 Workerman[start.php] start in DEBUG mode
 2015-12-10 07:56:50 Workerman[start.php] Stopping ...
 2015-12-10 07:56:50 Workerman[start.php] has been stopped
+2015-12-11 01:28:15 Workerman[start.php] start in DEBUG mode
+2015-12-11 02:50:02 Workerman[start.php] Stopping ...
+2015-12-11 02:50:02 Workerman[start.php] has been stopped
+2015-12-11 02:50:03 Workerman[start.php] start in DEBUG mode
+2015-12-11 02:52:27 Workerman[start.php] Stopping ...
+2015-12-11 02:52:27 Workerman[start.php] has been stopped
+2015-12-11 02:52:29 Workerman[start.php] start in DEBUG mode
+2015-12-11 02:55:33 Workerman[start.php] Stopping ...
+2015-12-11 02:55:33 Workerman[start.php] has been stopped
+2015-12-11 02:55:36 Workerman[start.php] start in DEBUG mode
+2015-12-11 02:55:43 Workerman[start.php] Stopping ...
+2015-12-11 02:55:43 Workerman[start.php] has been stopped
+2015-12-11 02:55:46 Workerman[start.php] start in DEBUG mode
+2015-12-11 02:57:32 Workerman[start.php] Stopping ...
+2015-12-11 02:57:33 Workerman[start.php] has been stopped
+2015-12-11 02:57:33 Workerman[start.php] start in DEBUG mode
+2015-12-11 02:57:35 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready
+2015-12-11 02:57:35 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready
+2015-12-11 02:57:35 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready
+2015-12-11 02:57:35 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready
+2015-12-11 02:57:35 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready
+2015-12-11 02:57:35 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready
+2015-12-11 02:57:35 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready
+2015-12-11 02:57:35 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready
+2015-12-11 02:57:40 Workerman[start.php] Stopping ...
+2015-12-11 02:57:40 Workerman[start.php] has been stopped
+2015-12-11 02:57:41 Workerman[start.php] start in DEBUG mode
+2015-12-11 02:57:42 Workerman[start.php] Stopping ...
+2015-12-11 02:57:42 Workerman[start.php] has been stopped
+2015-12-11 02:57:42 Workerman[start.php] start in DEBUG mode
+2015-12-11 02:57:44 Workerman[start.php] Stopping ...
+2015-12-11 02:57:44 Workerman[start.php] has been stopped
+2015-12-11 02:57:45 Workerman[start.php] start in DEBUG mode
+2015-12-11 03:24:26 Workerman[start.php] Stopping ...
+2015-12-11 03:24:26 Workerman[start.php] has been stopped
+2015-12-11 03:24:27 Workerman[start.php] start in DEBUG mode
+2015-12-11 03:43:41 Workerman[start.php] Stopping ...
+2015-12-11 03:43:41 Workerman[start.php] has been stopped
+2015-12-11 03:43:42 Workerman[start.php] start in DEBUG mode
+2015-12-11 03:44:24 Workerman[start.php] Stopping ...
+2015-12-11 03:44:24 Workerman[start.php] has been stopped
+2015-12-11 03:44:57 Workerman[start.php] start in DEBUG mode
+2015-12-11 03:45:00 Workerman[start.php] start in DEBUG mode
+2015-12-11 03:45:00 Workerman[start.php] is running
+2015-12-11 03:45:04 Workerman[start.php] start in DEBUG mode
+2015-12-11 03:45:04 Workerman[start.php] is running
+2015-12-11 03:45:05 Workerman[start.php] start in DEBUG mode
+2015-12-11 03:45:05 Workerman[start.php] is running
+2015-12-11 03:45:12 Workerman[start.php] stop 
+2015-12-11 03:45:12 Workerman[start.php] is stoping ...
+2015-12-11 03:45:17 Workerman[start.php] stop fail
+2015-12-11 03:45:18 Workerman[start.php] start in DEBUG mode
+2015-12-11 03:45:18 Workerman[start.php] is running
+2015-12-11 03:46:12 Workerman[start.php] start in DEBUG mode
+2015-12-11 04:01:42 Workerman[start.php] Stopping ...
+2015-12-11 04:01:42 Workerman[start.php] has been stopped
+2015-12-11 04:02:03 Workerman[start.php] start in DEBUG mode
+2015-12-11 04:30:46 Workerman[start.php] Stopping ...
+2015-12-11 04:30:46 Workerman[start.php] has been stopped
+2015-12-11 04:30:46 Workerman[start.php] start in DEBUG mode
+2015-12-11 04:43:38 Workerman[start.php] Stopping ...
+2015-12-11 04:43:38 Workerman[start.php] has been stopped
+2015-12-11 04:43:39 Workerman[start.php] start in DEBUG mode
+2015-12-11 04:53:50 Workerman[start.php] Stopping ...
+2015-12-11 04:53:50 Workerman[start.php] has been stopped
+2015-12-11 04:53:52 Workerman[start.php] start in DEBUG mode

@@ -148,6 +148,8 @@ class Table{
     {
         $currOpUid = $this->currOpUid;
         $this->lastOpUid = $currOpUid;
+        $this->noPlayNums[$currOpUid] = isset($this->noPlayNums[$currOpUid])?$this->noPlayNums[$currOpUid]:0;
+        $this->noPlayNums[$currOpUid] = ($op== 0 ?(int)$this->noPlayNums[$currOpUid]+1:0);
         //托管，则自动出牌
         $currUidCards = $this->playerCards[$currOpUid];
         if(count($playCardNos) == 0)
@@ -198,7 +200,6 @@ class Table{
             $this->lastPlayCardUid = $currOpUid;
             $this->currOpUid = $this->getNextOpUid($currOpUid);
 
-
             $this->currUnPlayCnt = 0;
             if(count($currUidCards) == 0)
             {
@@ -236,7 +237,7 @@ class Table{
             $this->lastCardNos = array();
         }
         $this->currUnPlayCnt++;
-        if($op == 0)
+        if($op == 0 && $this->noPlayNums[$currOpUid] >= Constants::NO_PALY_NUM_TO_DEPOSIT)
         {
             if($this->playerStatus[$currOpUid] != Constants::PLAYER_LEAVE )
             {
@@ -321,7 +322,7 @@ class Table{
         $nowTime = time();
         if($table->tableStatus == Constants::TABLE_INIT)
         {
-//            echo "checkTime:table init cnt:".count($table->playerStatus)."\n";
+//            echo "checkTime:table init cnt:".count($table->playerStatus)." time:".time()."\n";
             if(($nowTime - $table->recordTime) >= 120 && count($table->playerStatus) < 3)//
             {
                 //牌局结束-人数不足 2.初始化失败
@@ -342,6 +343,9 @@ class Table{
                     Gateway::sendToUid($_uid,json_encode($re));
                 }
                 $table->recordTime = time();//叫地主开始时间定为3秒后
+
+                Timer::del($table->blinkTimeOut);
+                $table->blinkTimeOut = Timer::add(Constants::TABLE_GAME_CHECK_TIME, array($table, 'checkTime'));
                 TableDao::addTable($table->tableId,$table);
             }
         }
@@ -356,7 +360,8 @@ class Table{
         elseif($table->tableStatus == Constants::TABLE_IN_GAME)
         {
             $status = $table->playerStatus[$table->currOpUid];
-            if($status != Constants::PLAYER_LEAVE && $nowTime-$table->recordTime < (Constants::PLAY_TIME))
+
+            if($status == Constants::PLAYER_UN_DEPOSIT && $nowTime-$table->recordTime < (Constants::PLAY_TIME))
             {
                 return;
             }
@@ -437,7 +442,7 @@ class Table{
         foreach($this->uids as $uid)
         {
             $player = PlayerDao::getPlayer($uid);
-            if($player->tableId == $this->tableId)
+            if($player && $player->tableId == $this->tableId)
             {
                 PlayerDao::rmPlayer($uid);
             }
@@ -473,7 +478,7 @@ class Table{
         $this->initPlayAddCd = 3;
         $this->lastCardNos = array();
         $this->initTime = time();
-        $this->blinkTimeOut = Timer::add(2, array($this, 'checkTime'));
+        $this->blinkTimeOut = Timer::add(Constants::TABLE_INIT_CHECK_TIME, array($this, 'checkTime'));
     }
 
     public $tableId;
@@ -520,5 +525,7 @@ class Table{
     //用于确保第一个叫地主或出牌的玩家能走完cd
     //超时操作可以晚到-界面停止，超时正常；不能晚到-提前超时，减少操作时间
     public $initPlayAddCd;
+
+    public $noPlayNums;//未出牌次数记录
 }
 

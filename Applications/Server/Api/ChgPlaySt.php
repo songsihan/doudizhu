@@ -32,7 +32,15 @@ class ChgPlaySt{
             if($table && $table->tableStatus == Constants::TABLE_IN_GAME)
             {
                 $op = $data['op'];
-                $table->playerStatus[$uid] = $op == 0?Constants::PLAYER_UN_DEPOSIT:Constants::PLAYER_DEPOSIT;
+                if($op == 1)
+                {
+                    $table->playerStatus[$uid] = Constants::PLAYER_DEPOSIT;
+                    $table->noPlayNums[$uid] = 0;
+                }
+                else
+                {
+                    $table->playerStatus[$uid] = Constants::PLAYER_UN_DEPOSIT;
+                }
                 TableDao::addTable($table->tableId,$table);
                 $re['s'] = Constants::RESPONSE_SUCCESS;
                 $re['st'] = $table->playerStatus[$uid];

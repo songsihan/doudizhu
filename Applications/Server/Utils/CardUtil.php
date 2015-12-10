@@ -223,6 +223,7 @@ class CardUtil{
         $maxSameVal = $cardInfo['maxSameVal'];//最多相同的值
         $maxLen = $cardInfo['maxLen'];        //最多相同的数量
 
+
         if(isset($cardNums[16]) && isset($cardNums[17])
             && $cardNums[16] == 1&& $cardNums[17] == 1)
         {
@@ -259,7 +260,6 @@ class CardUtil{
             $data['type'] = $data['num'] > 1?Constants::CARD_TYPE_SINGLE_STRAIGHT:Constants::CARD_TYPE_SINGLE;
 
         }
-
         return $data;
     }
 

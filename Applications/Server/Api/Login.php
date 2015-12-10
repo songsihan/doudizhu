@@ -60,7 +60,7 @@ class Login{
             }
         }
 
-        if(!$table || ($nowTime - $table->initTime) >= 30)
+        if(!$table || ($nowTime - $table->initTime) >= 120)
         {
             $table = new Table($data['tid'],$data['uids']);
             TableDao::addTable($table->tableId,$table);

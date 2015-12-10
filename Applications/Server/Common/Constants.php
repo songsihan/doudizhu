@@ -36,11 +36,17 @@ class Constants{
         161,171
     );
 
+    const NO_PALY_NUM_TO_DEPOSIT = 2;//未出牌几次则自动托管
+
+    const TABLE_INIT_CHECK_TIME = 1;
+
+    const TABLE_GAME_CHECK_TIME = 2;
+
     const BASE_SOCRE = 1;
 
     const LANDLORD_TIME = 10;
 
-    const PLAY_TIME = 25;
+    const PLAY_TIME = 20;
 
     const PLAYER_UN_DEPOSIT = 1;//未托管
     const PLAYER_DEPOSIT = 2;//托管
