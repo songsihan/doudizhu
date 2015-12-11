@@ -404,6 +404,7 @@ class Table{
      */
     public function tableOver($uid)
     {
+        $roomId = $this->tableId;
         $award = Constants::BASE_SOCRE * $this->multiple;
         $uids = $this->uids;
         $dizhuWin = ($uid == $this->landlordUid);//地主赢为true
@@ -424,8 +425,9 @@ class Table{
             $userInfo = EndGame::getUserInfo($_uid,$status,$win,$award);
             $userInfos[] = $userInfo;
         }
-        EndGame::sendMsg(200,'normal',$this->tableId,$userInfos);
         $this->rmTable();
+        sleep(2);
+        EndGame::sendMsg(200,'normal',$roomId,$userInfos);
     }
 
 
