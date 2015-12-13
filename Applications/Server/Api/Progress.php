@@ -14,16 +14,23 @@ use Dao\TableDao;
 use GatewayWorker\Lib\Gateway;
 use \Model\Player;
 use Model\Table;
+use Workerman\Lib\Timer;
 
 class Progress{
 
     /**
      * 牌局玩家进度广播
      */
-    public static function doApi($player,$data,&$re)
+    public static function doApi($player,$data,&$re,$client_id)
     {
         $uid = $player->uid;
         $table = TableDao::getTable($player->tableId);
+        if($table && !Timer::isExistTimer($table->blinkTimeOut))
+        {
+            Gateway::bindUid($client_id,$uid);
+            $table->blinkTimeOut = Timer::add(Constants::TABLE_INIT_CHECK_TIME, array($table, 'checkTime'));
+            TableDao::addTable($table->tableId,$table);
+        }
         if($table && $data['addVal'] != -1)//添加值为-1 表示该请求为心跳
         {
             $uids = $table->uids;

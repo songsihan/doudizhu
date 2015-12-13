@@ -11,6 +11,7 @@ use \Common\Constants;
 use Dao\GameDao;
 use Dao\PlayerDao;
 use Dao\TableDao;
+use Dao\TimerDao;
 use GatewayWorker\Lib\Gateway;
 use Plat\EndGame;
 use Plat\LeaveGame;

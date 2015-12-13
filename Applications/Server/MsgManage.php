@@ -53,7 +53,7 @@ class MsgManage{
             switch($data['type'])
             {
                 case 'test':
-                    $st = Progress::doApi($player,$data,$re);
+                    $st = Progress::doApi($player,$data,$re,$client_id);
                     break;
                 case 'jt':
                     JoinTable::doApi($player,$data,$re);

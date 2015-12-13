@@ -69,7 +69,11 @@ class Timer
             self::tick();
         }
     }
-    
+
+    public static function isExistTimer($timerId)
+    {
+        return self::$_event->isExist($timerId);
+    }
     
     /**
      * 添加一个定时器

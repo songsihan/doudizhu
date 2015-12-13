@@ -85,7 +85,12 @@ class Select implements EventInterface
         $this->_scheduler = new \SplPriorityQueue();
         $this->_scheduler->setExtractFlags(\SplPriorityQueue::EXTR_BOTH);
     }
-    
+
+    public function isExist($timerId)
+    {
+        return isset($this->_task[$timerId]);
+    }
+
     /**
      * 添加事件及处理函数
      * @see Events\EventInterface::add()

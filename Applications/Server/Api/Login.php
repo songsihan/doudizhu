@@ -21,6 +21,7 @@ class Login{
      * 玩家账号注册，确定牌局
      * @param $data
      * @param $re
+     * @return int
      */
     public static function doApi($data,&$re)
     {

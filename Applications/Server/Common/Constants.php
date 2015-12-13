@@ -38,7 +38,7 @@ class Constants{
 
     const NO_PALY_NUM_TO_DEPOSIT = 2;//未出牌几次则自动托管
 
-    const TABLE_INIT_CHECK_TIME = 1;
+    const TABLE_INIT_CHECK_TIME = 0.3;
 
     const TABLE_GAME_CHECK_TIME = 2;
 
