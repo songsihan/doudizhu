@@ -25,8 +25,8 @@ class EndGame{
     	$nowTime = time();
         $sign = md5(Store::$signKey.$nowTime.$roomId.Store::$gameId);
         $msg = array();
-        $msg['code'] = $nowTime;
-        $msg['time'] = time();
+        $msg['code'] = $code;
+        $msg['time'] = $nowTime;
         $msg['codeMsg'] = $codeMsg;
         $msg['roomId'] = $roomId;
         $msg['gameId'] = Store::$gameId;

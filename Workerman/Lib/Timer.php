@@ -72,7 +72,7 @@ class Timer
 
     public static function isExistTimer($timerId)
     {
-        return self::$_event->isExist($timerId);
+        return isset(self::$_event->_task[$timerId]);
     }
     
     /**

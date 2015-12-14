@@ -269,7 +269,7 @@ class Table{
         foreach($uids as $_uid)
         {
             $_player = PlayerDao::getPlayer($_uid);
-            if($_player->tableId == $this->tableId)
+            if($_player && $_player->tableId == $this->tableId)
             {
                 Gateway::sendToUid($_uid,json_encode($re));
             }
@@ -341,6 +341,10 @@ class Table{
                 {
                     $_player = PlayerDao::getPlayer($_uid);
                     $re['tableInfo'] = $table->getTableInfo($_player);
+                    if(!$re['tableInfo'])
+                    {
+                        return;
+                    }
                     Gateway::sendToUid($_uid,json_encode($re));
                 }
                 $table->recordTime = time();//叫地主开始时间定为3秒后
@@ -374,14 +378,14 @@ class Table{
             }
 
             $table->initPlayAddCd = 0;
-            $hasIndex = array_search(Constants::PLAYER_UN_DEPOSIT,$table->playerStatus);
-            if($hasIndex == -1)//玩家都托管了－－玩家中途离开
-            {
-                //牌局结束-逃跑
-                Table::exceptionOver($table,201,'leave');
-                $table->rmTable();
-                return;
-            }
+//            $hasIndex = array_search(Constants::PLAYER_UN_DEPOSIT,$table->playerStatus);
+//            if($hasIndex == -1)//玩家都托管了－－玩家中途离开
+//            {
+//                //牌局结束-逃跑
+//                Table::exceptionOver($table,201,'leave');
+//                $table->rmTable();
+//                return;
+//            }
             $table->nextPlay();
         }
     }

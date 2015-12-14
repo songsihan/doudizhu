@@ -54,7 +54,7 @@ class Select implements EventInterface
      * [[func, args, flag, timer_interval], ..]
      * @var array
      */
-    protected $_task = array();
+    public $_task = array();
     
     /**
      * 定时器id
@@ -84,11 +84,6 @@ class Select implements EventInterface
         // 初始化优先队列(最大堆)
         $this->_scheduler = new \SplPriorityQueue();
         $this->_scheduler->setExtractFlags(\SplPriorityQueue::EXTR_BOTH);
-    }
-
-    public function isExist($timerId)
-    {
-        return isset($this->_task[$timerId]);
     }
 
     /**
