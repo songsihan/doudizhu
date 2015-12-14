@@ -311,9 +311,9 @@ class Table{
     /**
      *  检查操作超时
      */
-    public function checkTime()
+    public function checkTime($table = '')
     {
-        $table = TableDao::getTable($this->tableId);
+        $table || $table = TableDao::getTable($this->tableId);
         if(!$table || !is_object($table))
         {
 //            echo "checkTime:table is not table!! table:".$table."\n";
@@ -410,12 +410,12 @@ class Table{
     public function tableOver($uid)
     {
         $roomId = $this->tableId;
-        $award = Constants::BASE_SOCRE * $this->multiple;
         $uids = $this->uids;
         $dizhuWin = ($uid == $this->landlordUid);//地主赢为true
         $userInfos = array();
         foreach($uids as $_uid)
         {
+            $award = Constants::BASE_SOCRE * $this->multiple;
             $status = ($this->playerStatus[$_uid] == Constants::PLAYER_LEAVE)?1:0;
             $win = 1;
             if($_uid == $this->landlordUid)

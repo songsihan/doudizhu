@@ -33,8 +33,13 @@ class JoinTable{
         if($table)
         {
             $table->addUid($uid);
-            TableDao::addTable($table->tableId,$table);
             GameDao::addInGamePlayer($uid);
+            if(count($table->playerStatus) == 3)
+            {
+//                echo "JoinTable:\n";
+                $table->checkTime($table);
+            }
+            TableDao::addTable($table->tableId,$table);
             $re['s'] = Constants::RESPONSE_FAIL;
             return 0;
         }

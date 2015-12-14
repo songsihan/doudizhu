@@ -31,6 +31,12 @@ class Progress{
             $table->blinkTimeOut = Timer::add(Constants::TABLE_INIT_CHECK_TIME, array($table, 'checkTime'));
             TableDao::addTable($table->tableId,$table);
         }
+        if($table && !isset($table->playerStatus[$uid]))
+        {
+            $table->addUid($uid);
+            GameDao::addInGamePlayer($uid);
+            TableDao::addTable($table->tableId,$table);
+        }
         if($table && $data['addVal'] != -1)//添加值为-1 表示该请求为心跳
         {
             $uids = $table->uids;
