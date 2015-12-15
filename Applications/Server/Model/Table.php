@@ -258,6 +258,7 @@ class Table{
         $re['lastPlayCardUid'] = $this->lastPlayCardUid;
         $re['currOpUid'] = $this->currOpUid;
         $re['lastOpUid'] = $this->lastOpUid;
+        $re['lastOpCardNum'] = count($this->playerCards[$this->lastOpUid]);
         $re['tableSt'] = $this->tableStatus;
         $re['rTime'] = $this->recordTime;
         $re['multiple'] = $this->multiple;
@@ -347,7 +348,7 @@ class Table{
                     }
                     Gateway::sendToUid($_uid,json_encode($re));
                 }
-                $table->recordTime = time();//叫地主开始时间定为3秒后
+                $table->recordTime = time();
 
                 Timer::del($table->blinkTimeOut);
                 $table->blinkTimeOut = Timer::add(Constants::TABLE_GAME_CHECK_TIME, array($table, 'checkTime'));
@@ -362,7 +363,7 @@ class Table{
                 $table->landlordOverTime();
             }
         }
-        elseif($table->tableStatus == Constants::TABLE_IN_GAME)
+        elseif($table->tableStatus == Constants::TABLE_IN_GAME && ($nowTime - $table->recordTime) >= 2)//自动出牌间隔2秒
         {
             $status = $table->playerStatus[$table->currOpUid];
 
@@ -376,16 +377,6 @@ class Table{
                 $table->playerStatus[$table->currOpUid] = Constants::PLAYER_LEAVE;
                 LeaveGame::sendMsg($table->currOpUid,$table->tableId);
             }
-
-            $table->initPlayAddCd = 0;
-//            $hasIndex = array_search(Constants::PLAYER_UN_DEPOSIT,$table->playerStatus);
-//            if($hasIndex == -1)//玩家都托管了－－玩家中途离开
-//            {
-//                //牌局结束-逃跑
-//                Table::exceptionOver($table,201,'leave');
-//                $table->rmTable();
-//                return;
-//            }
             $table->nextPlay();
         }
     }
@@ -534,5 +525,7 @@ class Table{
     public $initPlayAddCd;
 
     public $noPlayNums;//未出牌次数记录
+
+    public $readyUids = array();//已准备好的用户
 }
 

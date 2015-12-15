@@ -25,19 +25,36 @@ class Progress{
     {
         $uid = $player->uid;
         $table = TableDao::getTable($player->tableId);
-        if($table && !Timer::isExistTimer($table->blinkTimeOut))
+        if(!$table)
+        {
+            return 1;
+        }
+        if(!Timer::isExistTimer($table->blinkTimeOut))
         {
             Gateway::bindUid($client_id,$uid);
             $table->blinkTimeOut = Timer::add(Constants::TABLE_INIT_CHECK_TIME, array($table, 'checkTime'));
             TableDao::addTable($table->tableId,$table);
         }
-        if($table && !isset($table->playerStatus[$uid]))
+        if(!isset($table->playerStatus[$uid]))
         {
             $table->addUid($uid);
             GameDao::addInGamePlayer($uid);
             TableDao::addTable($table->tableId,$table);
         }
-        if($table && $data['addVal'] != -1)//添加值为-1 表示该请求为心跳
+        if($data['st'] == 1)
+        {
+            if(!in_array($uid,$table->readyUids))
+            {
+                $table->readyUids[] = $uid;
+                TableDao::addTable($table->tableId,$table);
+            }
+            if(count($table->readyUids) >= 3)
+            {
+                $re['uid'] = -1;
+                Gateway::sendToUid($table->uids,json_encode($re));
+            }
+        }
+        if($data['addVal'] != -1)//添加值为-1 表示该请求为心跳
         {
             $uids = $table->uids;
             $re['uid'] = $uid;
