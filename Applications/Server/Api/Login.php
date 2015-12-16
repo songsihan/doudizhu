@@ -25,6 +25,11 @@ class Login{
      */
     public static function doApi($data,&$re)
     {
+        if(!isset($data['uid']))
+        {
+            $re['s'] = Constants::RESPONSE_FAIL;
+            return 0;
+        }
         $uid = $data['uid'];
         $re['uid'] = $uid;
         $player = PlayerDao::getPlayer($uid);
@@ -48,6 +53,7 @@ class Login{
         if($table && isset($table->playerStatus[$uid])
             && ($nowTime - $table->recordTime) <= 60 //记录时间一分钟未更新，牌局失效
             && $table->tableStatus != Constants::TABLE_INIT
+            && $table->tableStatus != Constants::TABLE_END
             && $table->playerStatus[$uid] != Constants::PLAYER_LEAVE)
         {
             GameDao::addInGamePlayer($uid);
@@ -66,7 +72,7 @@ class Login{
             $table = new Table($data['tid'],$data['uids']);
             TableDao::addTable($table->tableId,$table);
         }
-        if(in_array($uid,$table->uids))
+        if($table && in_array($uid,$table->uids))
         {
             $re['s'] = Constants::RESPONSE_SUCCESS;
         }

@@ -35,7 +35,7 @@ class MsgManage{
         if($data['type'] == 'login')
         {
             Login::doApi($data,$re);
-            Gateway::bindUid($client_id,$re['uid']);
+            isset($re['uid']) && Gateway::bindUid($client_id,$re['uid']);
         }
         else
         {

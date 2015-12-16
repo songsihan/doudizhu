@@ -324,7 +324,7 @@ class Table{
         $nowTime = time();
         if($table->tableStatus == Constants::TABLE_INIT)
         {
-//            echo "checkTime:table init cnt:".count($table->playerStatus)." time:".time()."\n";
+//            echo "tid:".$this->tableId." checkTime:table init playerStatus:".count($table->playerStatus)." time:".time()."\n";
             if(($nowTime - $table->recordTime) >= 120 && count($table->playerStatus) < 3)//
             {
                 //牌局结束-人数不足 2.初始化失败
@@ -333,6 +333,7 @@ class Table{
             }
             if(count($table->playerStatus) == 3)
             {
+//                echo "tid:".$this->tableId." sendTableInfo\n";
                 $uids = $table->uids;
                 $table->tableStatus = Constants::TABLE_LANDLORD;
                 $re = array();
@@ -357,7 +358,9 @@ class Table{
         }
         elseif($table->tableStatus == Constants::TABLE_LANDLORD)
         {
-            if(($nowTime - $table->recordTime) >= (Constants::LANDLORD_TIME + 1 + $table->initPlayAddCd))//11秒内允许操作，10秒的倒计时
+//            echo "tid:".$this->tableId." checkTime:table landlord readyUids:".count($table->readyUids)." time:".time()."\n";
+            if(count($table->readyUids) >= 3
+                && ($nowTime - $table->recordTime) >= (Constants::LANDLORD_TIME + 1 + $table->initPlayAddCd))//11秒内允许操作，10秒的倒计时
             {
                 $table->initPlayAddCd = 0;
                 $table->landlordOverTime();

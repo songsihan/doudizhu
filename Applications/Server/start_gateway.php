@@ -21,7 +21,7 @@ use \Workerman\Autoloader;
 require_once __DIR__ . '/../../Workerman/Autoloader.php';
 Autoloader::setRootPath(__DIR__);
 
-Worker::$stdoutFile = '/tmp/stdout.log';
+//Worker::$stdoutFile = '/tmp/stdout.log';
 
 // gateway 进程，这里使用Text协议，可以用telnet测试
 $gateway = new Gateway("Websocket://0.0.0.0:8282");

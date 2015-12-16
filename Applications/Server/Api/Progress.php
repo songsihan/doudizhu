@@ -50,6 +50,8 @@ class Progress{
             }
             if(count($table->readyUids) >= 3)
             {
+                $table->recordTime = time();
+                TableDao::addTable($table->tableId,$table);
                 $re['uid'] = -1;
                 Gateway::sendToUid($table->uids,json_encode($re));
             }
